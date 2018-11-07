@@ -42,17 +42,17 @@ if there's a delay effect between the response variable and predictor variable.
 
 Some functions dealing with spatial objects are prefixed with `sp_`.
 
-`sp_transform`: Transform the projection system. To get code for the projection 
+* `sp_transform`: Transform the projection system. To get code for the projection 
 system, use `projection_*`.
-`sp_from_data_frame`: Convert data frame to spatial object.
+* `sp_from_data_frame`: Convert data frame to spatial object.
 
 ### String functions
 
 Functions dealing with character strings are prefixed with `str_`.
 
-`str_trim`: Trim leading or tailing white space in a string.
-`str_underscore`: Replace space with "_" in a string.
-`str_to_link`: Convert a string to a HTML link.
+* `str_trim`: Trim leading or tailing white space in a string.
+* `str_underscore`: Replace space with "_" in a string.
+* `str_to_link`: Convert a string to a HTML link.
 
 
 
