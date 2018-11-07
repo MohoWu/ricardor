@@ -28,6 +28,8 @@ legend options.
 * `plot_dygraph`: Plot a interactive timeseries with `dygraph`. 
 * `plot_calendar`: A ggplot version of calendar plot. It's easy to convert this 
 to an interactive plot with `ploty::ggplotly`
+* `plot_polar`: A polar scatter plot particular useful for plotting pollutants against 
+wind speed and direction.
 
 ### Modelling
 
