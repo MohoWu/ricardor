@@ -18,4 +18,5 @@ Imports:
     forcats,
     lubridate,
     ggplot2,
-    sp
+    sp,
+    plotly
