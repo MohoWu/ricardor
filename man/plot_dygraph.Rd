@@ -5,9 +5,10 @@
 \title{Interactive time series}
 \usage{
 plot_dygraph(df, x = "date", vars, normalise = FALSE, dy.label = NA,
-  tz = "UTC", draw.points = FALSE, point.size = 2, line.width = 0.5,
-  connect.points = TRUE, highlight.individual = FALSE, dy.group = NA,
-  ylab = NULL, ylim = NULL, ...)
+  tz = "UTC", draw.points = FALSE, point.size = 2,
+  line.width = 0.5, connect.points = TRUE,
+  highlight.individual = FALSE, dy.group = NA, ylab = NULL,
+  ylim = NULL, ...)
 }
 \arguments{
 \item{df}{A dataframe containing variables to plot in a wide format.}

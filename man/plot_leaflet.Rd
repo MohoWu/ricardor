@@ -5,8 +5,9 @@
 \title{Convenience function to quickly plot geometries on a leaflet map.}
 \usage{
 plot_leaflet(sp, popup = NULL, force = TRUE, colour = "#03F",
-  col_group = NULL, n = 7, palette = "viridis", legend_pos = "topright",
-  legend_title = NULL, opacity = 0.5, fill_opacity = 0.2)
+  col_group = NULL, n = 7, palette = "viridis",
+  legend_pos = "topright", legend_title = NULL, opacity = 0.5,
+  fill_opacity = 0.2)
 }
 \arguments{
 \item{sp}{Spatial object to be plotted.}
@@ -20,7 +21,7 @@ plot_leaflet(sp, popup = NULL, force = TRUE, colour = "#03F",
 \item{col_group}{If the colour mapped on a numeric vector, how should the colours be grouped.
 Default is \code{NULL}. Can be "bin" or "quantile".}
 
-\item{n}{If the \code{col_group`` is not}NULL``, how many different of colours should be plotted.}
+\item{n}{If the \code{col_group`` is not }NULL``, how many different of colours should be plotted.}
 
 \item{palette}{Colour pallette options passed to \code{\link[leaflet:colorNumeric]{leaflet::colorNumeric()}}.}
 
