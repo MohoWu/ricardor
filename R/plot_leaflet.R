@@ -216,7 +216,8 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
         legend_pos,
         pal = pal,
         values = sp[[colour_col]],
-        title = legend_title
+        title = legend_title,
+        labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))
       )
 
   }
