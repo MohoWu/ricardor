@@ -67,7 +67,7 @@ sp_from_data_frame <- function(df, type, latitude = "latitude",
 
   if (any(is.na(df[latitude])) || any(is.na(df[longitude]))) {
 
-    warning("Missing latitude and longitude detected and removed.". call. = FALSE)
+    warning("Missing latitude and longitude detected and removed.", call. = FALSE)
 
     df <- df[complete.cases(df[c(latitude, longitude)]), ]
 
