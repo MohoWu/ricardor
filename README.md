@@ -38,7 +38,7 @@ Some functions that can be useful during modelling are prefixed with `var_`.
 * `var_shift`: Shift variable(s) forward or backward by n observations to investigate
 if there's a delay effect between the response variable and predictor variable.
 * `var_select`: A stepwise variable selection algorithm aiming to maximise the 
-*R*^2^ of a multiple linear regression model.
+*R*<sup>2</sup> of a multiple linear regression model.
 
 ### Spatial 
 
