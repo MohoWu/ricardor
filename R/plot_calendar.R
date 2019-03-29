@@ -1,15 +1,18 @@
 #' ggplot2 version of calendar plot
 #'
-#' A ggplot2 equivalent of \code{\link[openair]{calendarPlot}}
+#' A ggplot2 equivalent of [openair::calendarPlot()]
 #'
 #' Note that the ggplot2 object returned will not have any scale
-#' defined for the fill, so that can be added to the returned
-#' ggplot2 object.
+#' defined for the fill, so that they can be added easily with an ad-hoc approach.
 #'
 #'
-#' @param data Data frame containing a \code{date} column
-#' @param fill The column to fill the calendar plot.
+#' @param data Data frame containing a `date` column
+#' @param fill The column to fill the calendar plot. This is usually the pollutant
+#'   concentration.
 #' @param wd,ws Optional wind speed and wind direction plotted as arrows.
+#' @param text Optional column to pass to `text` in [ggplot2::aes()]. This can be
+#'   useful if you intend to convert to plotly and control what is showing up
+#'   when you hover over the plot.
 #' @param draw.arrow Should the wind vector arrows be drawn. This is better turned off
 #'  if the plot is going to be converted to plotly.
 #'
@@ -17,7 +20,7 @@
 #' to the month name automatically, otherwise, it will not appear.
 #'
 #' @import ggplot2
-#' @importFrom lubridate wday month year day
+#' @importFrom lubridate wday month year day "day<-"
 #' @importFrom forcats fct_inorder
 #'
 #' @export
@@ -26,25 +29,22 @@
 #'
 #'
 #' }
-plot_calendar <- function(data, fill, wd, ws, draw.arrow = TRUE) {
+plot_calendar <- function(data, fill, wd = NULL, ws = NULL, text = NULL, draw.arrow = TRUE) {
 
   # substitute arguements
   fill <- enquo(fill)
-  fill_str <- quo_name(fill)
+  wd <- enquo(wd)
+  ws <- enquo(ws)
+  text <- enquo(text)
+  text_name <- quo_name(text)
 
-  if (!missing(wd) && !missing(ws)) {
-    wd <- enquo(wd)
-    wd_str <- quo_name(wd)
-    ws <- enquo(ws)
-    ws_str <- quo_name(ws)
-  }
-
-
+  # function to get the day of first day of a month
   first_day_of_month_wday <- function(dx) {
     day(dx) <- 1
     wday(dx)
   }
 
+  # add all the variables required for a calendar plot
   mydata <- data %>%
     ungroup() %>%
     mutate(dow = wday(date),
@@ -61,27 +61,28 @@ plot_calendar <- function(data, fill, wd, ws, draw.arrow = TRUE) {
 
   # put this in front since need to include all aes in the ggplot
   # in order to show full info when converting to plotly
-  if (!missing(wd) && !missing(ws)) {
+  if (quo_name(wd) != "NULL" && quo_name(ws) != "NULL") {
     gplot <- ggplot(mydata,
-                    aes_string("dow", "y", fill = fill_str)) +
+                    aes(dow, y, fill = !!fill, text = paste0(text_name, ": ", !!text))) +
       geom_tile(color="gray80", alpha = 0.75) +
-      geom_text(aes_string(label = "day", colour = ws_str),
+      geom_text(aes(label = day, colour = !!ws),
                 size = 2) +
       scale_color_gradientn(colours = openair::openColours("Blues"),
                             guide = FALSE)
     if (draw.arrow) {
       gplot <- gplot +
-        geom_spoke(aes_string(angle = wd_str),
+        geom_spoke(aes(angle = !!wd),
                    radius = 0.4,
                    arrow = arrow(length = unit(0.1, "cm")))
     }
 
   } else {
-    gplot <- ggplot(mydata, aes_string("dow", "y",fill = fill_str)) +
+    gplot <- ggplot(mydata, aes(dow, y, fill = !!fill)) +
       geom_text(aes(label = day), size = 2) +
       geom_tile(color="gray80", alpha = 0.75)
   }
 
+  # add to the plot
   gplot <- gplot +
     facet_wrap(~monlabel, ncol = 3) +
     scale_x_continuous(expand=c(0,0),
