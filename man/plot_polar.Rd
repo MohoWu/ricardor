@@ -4,13 +4,15 @@
 \alias{plot_polar}
 \title{Polar scatter plot}
 \usage{
-plot_polar(data, pol)
+plot_polar(data, pol, ...)
 }
 \arguments{
 \item{data}{A data frame containing wind speed and wind direction data with names
 \code{ws} and \code{wd}, respectively.}
 
 \item{pol}{The name of the pollutant to plot.}
+
+\item{...}{Additional arguements passed to \code{\link[plotly:plot_ly]{plotly::plot_ly()}}}
 }
 \value{
 A plotly object

@@ -65,6 +65,14 @@ sp_from_data_frame <- function(df, type, latitude = "latitude",
   if (!grepl("points|lines|polygons", type))
     stop("'type' must be one of 'points', 'lines', or 'polygons'.", call. = FALSE)
 
+  if (any(is.na(df[latitude])) || any(is.na(df[longitude]))) {
+
+    warning("Missing latitude and longitude detected and removed.", call. = FALSE)
+
+    df <- df[complete.cases(df[c(latitude, longitude)]), ]
+
+  }
+
   # Promote to spatial data
   if (type == "points")
     sp <- data_frame_to_points(df, latitude, longitude, projection, keep)

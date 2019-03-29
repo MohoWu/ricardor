@@ -3,6 +3,7 @@
 #' @param data A data frame containing wind speed and wind direction data with names
 #'  `ws` and `wd`, respectively.
 #' @param pol The name of the pollutant to plot.
+#' @param ... Additional arguements passed to [plotly::plot_ly()]
 #'
 #' @return A plotly object
 #' @importFrom plotly plot_ly add_trace layout
@@ -15,7 +16,7 @@
 #'
 #'
 
-plot_polar <- function(data, pol) {
+plot_polar <- function(data, pol, ...) {
 
   # no x and y axes labels
   ax <- list(
@@ -31,7 +32,8 @@ plot_polar <- function(data, pol) {
     data = data,
     type = 'scatterpolar',
     mode = "markers",
-    hoverinfo = "text"
+    hoverinfo = "text",
+    ...
   ) %>%
     add_trace(
       name = pol,
