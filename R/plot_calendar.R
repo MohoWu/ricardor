@@ -29,7 +29,7 @@
 #'
 #'
 #' }
-plot_calendar <- function(data, fill, wd = NULL, ws = NULL, text = NULL, draw.arrow = TRUE) {
+plot_calendar <- function(data, fill, wd = NULL, ws = NULL, text = wd, draw.arrow = TRUE) {
 
   # substitute arguements
   fill <- enquo(fill)
