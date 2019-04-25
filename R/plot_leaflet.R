@@ -119,26 +119,39 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
     colour_col <- colour
 
     # colour is numeric
+    # we need regular pal for plotting and a reverse pal for legend
     if (is.numeric(sp[[colour]])) {
       if (is.null(col_group)) {
 
         pal <- colorNumeric(palette,
+                            domain = sp[[colour]])
+
+        pal_rev <- colorNumeric(palette,
                             domain = sp[[colour]],
                             reverse = TRUE)
 
       } else if (col_group == "bin") {
 
+
         pal <- colorBin(palette,
                         domain = sp[[colour]],
-                        bins = n,
-                        reverse = TRUE)
+                        bins = n)
+
+        pal_rev <- colorBin(palette,
+                            domain = sp[[colour]],
+                            bins = n,
+                            reverse = TRUE)
 
       } else if (col_group == "quantile") {
 
         pal <- colorQuantile(palette,
                              domain = sp[[colour]],
-                             n = n,
-                             reverse = TRUE)
+                             n = n)
+
+        pal_rev <- colorQuantile(palette,
+                                 domain = sp[[colour]],
+                                 n = n,
+                                 reverse = TRUE)
 
       }
 
@@ -157,6 +170,8 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
       if (is.factor(sp[[colour]])) {
 
         pal <- colorFactor(palette, domain = sp[[colour]])
+
+        pal_rev <- colorFactor(palette, domain = sp[[colour]], reverse = TRUE)
 
         colour <- pal(sp[[colour]])
       }
@@ -214,12 +229,11 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
     map <- map %>%
       addLegend(
         legend_pos,
-        pal = pal,
+        pal = pal_rev,
         values = sp[[colour_col]],
         title = legend_title,
         labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))
       )
-
   }
 
   return(map)
