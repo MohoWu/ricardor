@@ -19,4 +19,5 @@ Imports:
     lubridate,
     ggplot2,
     sp,
-    plotly
+    plotly,
+    leaflet
