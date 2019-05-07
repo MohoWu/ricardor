@@ -7,7 +7,7 @@
 plot_leaflet(sp, popup = NULL, force = TRUE, colour = "#03F",
   col_group = NULL, n = 7, palette = "viridis",
   legend_pos = "topright", legend_title = NULL, opacity = 0.5,
-  fill_opacity = 0.2)
+  fill_opacity = 0.2, ...)
 }
 \arguments{
 \item{sp}{Spatial object to be plotted.}
@@ -32,6 +32,8 @@ Default is \code{NULL}. Can be "bin" or "quantile".}
 \item{opacity}{Opacity of the edge of the geometry.}
 
 \item{fill_opacity}{Internal opacity of the geometry.}
+
+\item{...}{Other arguments passed to \code{\link[leaflet:addControl]{leaflet::addControl()}}}
 }
 \value{
 Invisible, a leaflet map.

@@ -23,6 +23,8 @@
 #'
 #' @param fill_opacity Internal opacity of the geometry.
 #'
+#' @param ... Other arguments passed to [leaflet::addControl()]
+#'
 #' @author Stuart K. Grange
 #'
 #' @return Invisible, a leaflet map.
@@ -33,7 +35,7 @@
 plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
                          col_group = NULL, n = 7, palette = "viridis",
                          legend_pos = "topright", legend_title = NULL,
-                         opacity = 0.5, fill_opacity = 0.2) {
+                         opacity = 0.5, fill_opacity = 0.2, ...) {
 
   # Find geom type
   sp_class <- sp_class(sp)
@@ -188,7 +190,8 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
         popup = popup,
         color = colour,
         opacity = opacity,
-        fillOpacity = fill_opacity
+        fillOpacity = fill_opacity,
+        ...
       )
 
   } else if (grepl("lines", sp_class, ignore.case = TRUE)) {
@@ -198,7 +201,8 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
         popup = popup,
         color = colour,
         opacity = opacity,
-        fillOpacity = fill_opacity
+        fillOpacity = fill_opacity,
+        ...
       )
 
   } else if (grepl("polygons", sp_class, ignore.case = TRUE)) {
@@ -208,7 +212,8 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
         popup = popup,
         color = colour,
         opacity = opacity,
-        fillOpacity = fill_opacity
+        fillOpacity = fill_opacity,
+        ...
       )
 
   } else if (sp_class == "RasterLayer") {
