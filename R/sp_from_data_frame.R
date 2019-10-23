@@ -91,9 +91,6 @@ sp_from_data_frame <- function(df, type, latitude = "latitude",
 data_frame_to_points <- function(df, latitude, longitude, projection,
                                  keep = FALSE) {
 
-  # Catch for dplyr's data frame class
-  df <- threadr::base_df(df)
-
   # NA check, if NAs drop them
   if (any(is.na(c(df[, latitude], df[, longitude])))) {
 
@@ -134,9 +131,6 @@ data_frame_to_points <- function(df, latitude, longitude, projection,
 
 
 data_frame_to_lines <- function(df, latitude, longitude, projection, id) {
-
-  # Catch for dplyr's data frame class
-  df <- threadr::base_df(df)
 
   # Make an identifier variable for lines
   if (is.na(id)) {
@@ -187,9 +181,6 @@ data_frame_to_lines <- function(df, latitude, longitude, projection, id) {
 
 
 data_frame_to_polygons <- function(df, latitude, longitude, projection, id) {
-
-  # Catch for dplyr's data frame class
-  df <- threadr::base_df(df)
 
   # Make an identifier variable for lines
   if (is.na(id)) {
