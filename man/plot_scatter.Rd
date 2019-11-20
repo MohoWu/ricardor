@@ -4,8 +4,15 @@
 \alias{plot_scatter}
 \title{Scatter plot iwth plotly}
 \usage{
-plot_scatter(data, x, y, group = NULL, text = NULL,
-  hoverinfo = "x+y", linear = TRUE)
+plot_scatter(
+  data,
+  x,
+  y,
+  group = NULL,
+  text = NULL,
+  hoverinfo = "x+y",
+  linear = TRUE
+)
 }
 \arguments{
 \item{data}{Data frame.}

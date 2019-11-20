@@ -4,8 +4,7 @@
 \alias{plot_calendar}
 \title{ggplot2 version of calendar plot}
 \usage{
-plot_calendar(data, fill, wd = NULL, ws = NULL, text = wd,
-  draw.arrow = TRUE)
+plot_calendar(data, fill, wd = NULL, ws = NULL, text = wd, draw.arrow = TRUE)
 }
 \arguments{
 \item{data}{Data frame containing a \code{date} column}
