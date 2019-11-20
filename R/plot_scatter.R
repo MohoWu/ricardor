@@ -15,15 +15,17 @@
 
 plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y", linear = TRUE) {
 
+  # prepare data drop NAs
   data <- prep_data(data, x, y, group, text)
 
+  # plotting
   scatter <- data %>%
     plotly::plot_ly(x = ~x) %>%
     plotly::add_markers(y = ~y, color = ~group, hoverinfo = hoverinfo, text = ~text,
                         colors = "Accent")
 
-
-  if (linear) {
+  # calculate linear line if there are at least 2 data points
+  if (linear && NROW(data) >= 2) {
 
     fit <- lm(as.formula(paste("y", "x", sep = "~")), data)
 
@@ -32,6 +34,7 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
 
   }
 
+  # return
   scatter
 
 }
