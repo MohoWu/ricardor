@@ -53,3 +53,32 @@ prep_data <- function(data, x, y, group, text, na.rm = TRUE) {
 
 }
 
+
+create_popup_string <- function(data, cols) {
+
+  # Select variables, no comma to keep data frame structure
+  data <- data[cols]
+
+  # Catch nas, make a string
+  data[is.na(data)] <- ""
+
+  # Get variable names
+  names <- names(data)
+
+  # Give names column-wise
+  popup_string <- apply(data, 1, collapse_values_with_name, name = names)
+
+  # Collapse row-wise, now just a vector
+  if (class(popup_string) == "matrix")
+    popup_string <- apply(popup_string, 2, stringr::str_c, collapse = "<br>")
+
+  # No names for the vector
+  popup_string <- unname(popup_string)
+
+  # Return
+  popup_string
+
+}
+
+collapse_values_with_name <- function(x, name, sep = ": ")
+  stringr::str_c(name, sep, x)
