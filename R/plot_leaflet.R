@@ -57,27 +57,7 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
 
     if (!is.null(popup)) {
 
-      # Select variables in data slot, no comma to keep data frame structure
-      df_sp <- sp@data[popup]
-
-      # Catch nas, make a string
-      df_sp[is.na(df_sp)] <- ""
-
-      # Get variable names
-      names <- names(df_sp)
-
-      # Give names column-wise
-      popup_string <- apply(df_sp, 1, collapse_values_with_name, name = names)
-
-      # Collapse row-wise, now just a vector
-      if (class(popup_string) == "matrix")
-        popup_string <- apply(popup_string, 2, stringr::str_c, collapse = "<br>")
-
-      # No names for the vector
-      popup_string <- unname(popup_string)
-
-      # Reassign
-      popup <- popup_string
+      popup <- create_popup_string(sp@data, popup)
 
     }
 
@@ -252,7 +232,3 @@ plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
   return(map)
 
 }
-
-
-collapse_values_with_name <- function(x, name, sep = ": ")
-  stringr::str_c(name, sep, x)

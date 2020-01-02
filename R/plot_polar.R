@@ -3,6 +3,7 @@
 #' @param data A data frame containing wind speed and wind direction data with names
 #'  `ws` and `wd`, respectively.
 #' @param pol The name of the pollutant to plot.
+#' @param popup Column(s) to show in the hoverbox. Default is the pol concentration.
 #' @param ... Additional arguements passed to [plotly::plot_ly()]
 #'
 #' @return A plotly object
@@ -16,7 +17,10 @@
 #'
 #'
 
-plot_polar <- function(data, pol, ...) {
+plot_polar <- function(data, pol, popup = pol, ...) {
+
+  # popup string
+  popup <- create_popup_string(data, popup)
 
   # no x and y axes labels
   ax <- list(
@@ -33,14 +37,14 @@ plot_polar <- function(data, pol, ...) {
     type = 'scatterpolar',
     mode = "markers",
     hoverinfo = "text",
+    text = popup,
     ...
   ) %>%
     add_trace(
       name = pol,
       r = ~ws,
       theta = ~wd,
-      color = data[[pol]],
-      text = ~paste(pol, ":", data[[pol]], "&mu;g m-3")
+      color = data[[pol]]
     ) %>%
     layout(
       polar = list(
