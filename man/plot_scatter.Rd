@@ -11,7 +11,8 @@ plot_scatter(
   group = NULL,
   text = NULL,
   hoverinfo = "x+y",
-  linear = TRUE
+  linear = TRUE,
+  colors = "Set3"
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ plot_scatter(
 For more info, check \code{\link[plotly:schema]{plotly::schema()}}}
 
 \item{linear}{Whether a linear best fit line is drawn.}
+
+\item{colors}{RColorBrewer pallete name.}
 }
 \value{
 A plotly object.
