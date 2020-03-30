@@ -1,6 +1,6 @@
 #' Convenience function to quickly plot geometries on a leaflet map.
 #'
-#' @param sp Spatial object to be plotted.
+#' @param data Spatial object or a data frame with coordinates
 #'
 #' @param popup Vector of variables to be used as a popup on the map.
 #'
@@ -29,6 +29,14 @@
 #'
 #' @param padding Padding of the map
 #'
+#' @param type If data is data frame, what type of spatial object it is.
+#'
+#' @param latitude,longitude Columns for latitude and longitude
+#'
+#' @param projection The projections system
+#'
+#' @param id If the data type is not point, an id column with the groupings.
+#'
 #' @param ... Other arguments passed to [leaflet::addControl()]
 #'
 #' @author Stuart K. Grange, Hao Wu
@@ -38,12 +46,23 @@
 #' @import leaflet
 #'
 #' @export
-plot_leaflet <- function(sp, popup = NULL, force = TRUE, colour = "#03F",
+plot_leaflet <- function(data, popup = NULL, force = TRUE, colour = "#03F",
                          col_group = NULL, n = 7, palette = "viridis",
                          legend_pos = "topright", legend_title = NULL,
                          opacity = 0.5, fill_opacity = 0.2,
                          width = NULL, height = NULL, padding = 0,
+                         type, latitude = "latitude",
+                         longitude = "longitude",
+                         projection = projection_wgs84(), id = NA,
                          ...) {
+
+  if (any(class(data) == "data.frame")) {
+
+    sp <- sp_from_data_frame(data, type = type,
+                             latitude = latitude, longitude = longitude,
+                             projection = projection, keep = TRUE, id = id)
+
+  } else sp <- data
 
   # Find geom type
   sp_class <- sp_class(sp)

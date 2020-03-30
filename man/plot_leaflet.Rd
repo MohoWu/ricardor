@@ -5,7 +5,7 @@
 \title{Convenience function to quickly plot geometries on a leaflet map.}
 \usage{
 plot_leaflet(
-  sp,
+  data,
   popup = NULL,
   force = TRUE,
   colour = "#03F",
@@ -19,11 +19,16 @@ plot_leaflet(
   width = NULL,
   height = NULL,
   padding = 0,
+  type,
+  latitude = "latitude",
+  longitude = "longitude",
+  projection = projection_wgs84(),
+  id = NA,
   ...
 )
 }
 \arguments{
-\item{sp}{Spatial object to be plotted.}
+\item{data}{Spatial object or a data frame with coordinates}
 
 \item{popup}{Vector of variables to be used as a popup on the map.}
 
@@ -51,6 +56,14 @@ Default is \code{NULL}. Can be "bin" or "quantile".}
 \item{height}{Height of the map}
 
 \item{padding}{Padding of the map}
+
+\item{type}{If data is data frame, what type of spatial object it is.}
+
+\item{latitude, longitude}{Columns for latitude and longitude}
+
+\item{projection}{The projections system}
+
+\item{id}{If the data type is not point, an id column with the groupings.}
 
 \item{...}{Other arguments passed to \code{\link[leaflet:addControl]{leaflet::addControl()}}}
 }
