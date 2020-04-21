@@ -59,9 +59,6 @@ create_popup_string <- function(data, cols) {
   # Select variables, no comma to keep data frame structure
   data <- data[cols]
 
-  # Catch nas, make a string
-  data[is.na(data)] <- ""
-
   # Get variable names
   names <- names(data)
 

@@ -19,6 +19,9 @@
 
 plot_polar <- function(data, pol, popup = pol, ...) {
 
+  # remove NA data
+  data <- na.omit(data[c(popup, pol, "ws", "wd")])
+
   # popup string
   popup <- create_popup_string(data, popup)
 
