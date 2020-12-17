@@ -13,7 +13,7 @@ var_shift(df, vars, n, fn)
 
 \item{n}{Number of observations to shift.}
 
-\item{fn}{The shifting function. Usually this is \code{\link[dplyr:lead]{dplyr::lead()}} or \code{\link[dplyr:lag]{dplyr::lag()}}.
+\item{fn}{The shifting function. Usually this is \code{\link[dplyr:lead-lag]{dplyr::lead()}} or \code{\link[dplyr:lead-lag]{dplyr::lag()}}.
 This could also be a custom function that takes a vector and a number \code{n}.}
 }
 \value{
@@ -21,7 +21,7 @@ Data frame with append shifted measurements.
 }
 \description{
 Sometimes we want to shift some measurements backward or forward.
-\code{\link[dplyr:lead]{dplyr::lead()}} and \code{\link[dplyr:lag]{dplyr::lag()}} do this but will only operate on a single
+\code{\link[dplyr:lead-lag]{dplyr::lead()}} and \code{\link[dplyr:lead-lag]{dplyr::lag()}} do this but will only operate on a single
 variable. \code{\link[=shift]{shift()}} extends this functionality and allows shifting mutiple
 variables by a range of steps.
 }
