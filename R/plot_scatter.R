@@ -9,13 +9,14 @@
 #'  For more info, check [plotly::schema()]
 #' @param linear Whether a linear best fit line is drawn.
 #' @param colors RColorBrewer pallete name.
+#' @param one2one_line Should the 1:1 line be drawn.
 #'
 #' @return A plotly object.
 #' @export
 #'
 
-plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y",
-                         linear = TRUE, colors = "Set3") {
+plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y+text",
+                         linear = TRUE, colors = "Set1", one2one_line = FALSE) {
 
   # prepare data drop NAs
   data <- prep_data(data, x, y, group, text)
@@ -24,7 +25,8 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
   scatter <- data %>%
     plotly::plot_ly(x = ~x) %>%
     plotly::add_markers(y = ~y, color = ~group, hoverinfo = hoverinfo, text = ~text,
-                        colors = colors)
+                        colors = colors) %>%
+    layout(xaxis = list(title = x), yaxis = list(title = y))
 
   # calculate linear line if there are at least 2 data points
   if (linear && NROW(data) >= 2) {
@@ -48,9 +50,9 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
       purrr::map_df(~as.data.frame(rbind(round(coef(.x), 2))), .id = "group") %>%
       rename(intercept = `(Intercept)`) %>%
       mutate(
-        rsq = purrr::map_dbl(fit, ~round(summary(.x)$r.squared, 3)),
+        rsq = purrr::map_dbl(fit, ~round(summary(.x)$r.squared, 2)),
         form = paste0("y = ", x, "x ", ifelse(intercept < 0, "", "+"), intercept, ", r2 = ", rsq),
-        x = quantile(data$x, 0.1),
+        x = max(data$x, na.rm = TRUE)/2,
         y = seq(max(data$y),
                 by = sd(data$y) * 0.5,
                 length.out = n()))
@@ -60,6 +62,16 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
       plotly::add_lines(y = ~y, x = ~x, color = ~group, data = fitted_data) %>%
       plotly::add_text(y = ~y, x = ~x, text = ~form, color = ~group, data = fitted_eqs,
                        showlegend = FALSE)
+
+  }
+
+  if (one2one_line) {
+
+    df_line <- data.frame(x = c(0, max(data$x, na.rm = TRUE)),
+                          y = c(0, max(data$x, na.rm = TRUE)))
+
+    scatter <- scatter %>%
+      plotly::add_lines(data = df_line, x = ~x, y = ~y, name = "1:1 line", color = "blue")
 
   }
 

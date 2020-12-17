@@ -10,9 +10,10 @@ plot_scatter(
   y,
   group = NULL,
   text = NULL,
-  hoverinfo = "x+y",
+  hoverinfo = "x+y+text",
   linear = TRUE,
-  colors = "Set3"
+  colors = "Set1",
+  one2one_line = FALSE
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ For more info, check \code{\link[plotly:schema]{plotly::schema()}}}
 \item{linear}{Whether a linear best fit line is drawn.}
 
 \item{colors}{RColorBrewer pallete name.}
+
+\item{one2one_line}{Should the 1:1 line be drawn.}
 }
 \value{
 A plotly object.
