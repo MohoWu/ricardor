@@ -48,9 +48,9 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
       purrr::map_df(~as.data.frame(rbind(round(coef(.x), 2))), .id = "group") %>%
       rename(intercept = `(Intercept)`) %>%
       mutate(
-        rsq = purrr::map_dbl(fit, ~round(summary(.x)$r.squared, 3)),
+        rsq = purrr::map_dbl(fit, ~round(summary(.x)$r.squared, 2)),
         form = paste0("y = ", x, "x ", ifelse(intercept < 0, "", "+"), intercept, ", r2 = ", rsq),
-        x = quantile(data$x, 0.1),
+        x = quantile(data$x, 0.9),
         y = seq(max(data$y),
                 by = sd(data$y) * 0.5,
                 length.out = n()))
