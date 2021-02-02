@@ -65,7 +65,7 @@ Default is \code{NULL}. Can be "bin" or "quantile".}
 
 \item{id}{If the data type is not point, an id column with the groupings.}
 
-\item{...}{Other arguments passed to \code{\link[leaflet:addControl]{leaflet::addControl()}}}
+\item{...}{Other arguments passed to \code{\link[leaflet:map-layers]{leaflet::addControl()}}}
 }
 \value{
 Invisible, a leaflet map.
