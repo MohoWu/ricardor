@@ -15,7 +15,22 @@ factor_df <- function(df) {
 
 
 
+#' Generate n distinct colours
+#'
+#' @param n Number of colours to generate
+#'
+#' @return A vector of colour names.
+#' @export
+#'
 
+distinct_colours <- function(n) {
+
+  # https://stackoverflow.com/a/33144808/4227151
+  colours <- grDevices::colors()[grep('gr(a|e)y', grDevices::colors(), invert = T)]
+
+  set.seed(123)
+  sample(colours, n)
+}
 
 
 
