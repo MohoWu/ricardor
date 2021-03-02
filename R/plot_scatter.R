@@ -1,4 +1,4 @@
-#' Scatter plot iwth plotly
+#' Scatter plot with plotly
 #'
 #' @param data Data frame.
 #' @param x Name of x variable.
@@ -8,7 +8,7 @@
 #' @param hoverinfo If text variable is specified, use "x+y+text" to show text.
 #'  For more info, check [plotly::schema()]
 #' @param linear Whether a linear best fit line is drawn.
-#' @param colors RColorBrewer pallete name.
+#' @param colors RColorBrewer palette name.
 #' @param one2one_line Should the 1:1 line be drawn.
 #'
 #' @return A plotly object.

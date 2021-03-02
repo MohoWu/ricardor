@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_scatter.R
 \name{plot_scatter}
 \alias{plot_scatter}
-\title{Scatter plot iwth plotly}
+\title{Scatter plot with plotly}
 \usage{
 plot_scatter(
   data,
@@ -32,7 +32,7 @@ For more info, check \code{\link[plotly:schema]{plotly::schema()}}}
 
 \item{linear}{Whether a linear best fit line is drawn.}
 
-\item{colors}{RColorBrewer pallete name.}
+\item{colors}{RColorBrewer palette name.}
 
 \item{one2one_line}{Should the 1:1 line be drawn.}
 }
@@ -40,5 +40,5 @@ For more info, check \code{\link[plotly:schema]{plotly::schema()}}}
 A plotly object.
 }
 \description{
-Scatter plot iwth plotly
+Scatter plot with plotly
 }
