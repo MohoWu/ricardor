@@ -16,20 +16,72 @@
 #'
 
 plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y+text",
-                         linear = TRUE, colors = "Set1", one2one_line = FALSE) {
+                         linear = TRUE, colors = "Set1", one2one_line = FALSE, ...) {
+
+
+  # helper function
+  prep_data <- function(data, x, y, group, text, na.rm = TRUE) {
+
+    # replace missing group with x_y name
+    if (is.null(group)) {
+
+      group <- paste(x, y, sep = "_")
+
+    } else {
+
+      group <- data[[group]]
+
+    }
+
+    # replace missing text with NA
+    if (is.null(text)) {
+
+      text <- NA_character_
+
+    } else {
+
+      text <- data[[text]]
+
+    }
+
+    # prepare data
+    data_new <- data.frame(
+      x = data[[x]],
+      y = data[[y]],
+      group = group,
+      text = text
+    )
+
+    if ("id" %in% names(data)) {
+
+      data_new$id = data[["id"]]
+
+    }
+
+    # remove na data
+    if (na.rm) {
+
+      data_new <- tidyr::drop_na(data_new, x, y)
+
+    }
+
+    data_new
+
+  }
 
   # prepare data drop NAs
   data <- prep_data(data, x, y, group, text)
 
   # plotting
   scatter <- data %>%
-    plotly::plot_ly(x = ~x) %>%
+    plotly::plot_ly(x = ~x, ...) %>%
     plotly::add_markers(y = ~y, color = ~group, hoverinfo = hoverinfo, text = ~text,
                         colors = colors) %>%
-    layout(xaxis = list(title = x), yaxis = list(title = y))
+    layout(xaxis = list(title = x),
+           yaxis = list(title = y))
 
   # calculate linear line if there are at least 2 data points
-  if (linear && NROW(data) >= 2) {
+  if (linear && NROW(data) >= 2 && !is.numeric(data[["group"]])) {
 
     # separate lm model for each group
     fit <- data %>%
@@ -71,7 +123,8 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
                           y = c(0, max(data$x, na.rm = TRUE)))
 
     scatter <- scatter %>%
-      plotly::add_lines(data = df_line, x = ~x, y = ~y, name = "1:1 line", color = "blue")
+      plotly::add_lines(data = df_line, x = ~x, y = ~y,
+                        name = "1:1 line", color = "blue")
 
   }
 
@@ -79,3 +132,5 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
   scatter
 
 }
+
+
