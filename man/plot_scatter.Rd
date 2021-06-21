@@ -13,7 +13,8 @@ plot_scatter(
   hoverinfo = "x+y+text",
   linear = TRUE,
   colors = "Set1",
-  one2one_line = FALSE
+  one2one_line = FALSE,
+  ...
 )
 }
 \arguments{
