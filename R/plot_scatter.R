@@ -102,9 +102,9 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
     ymax <- max(dat$y)
 
     fitted_eqs <- fit %>%
-      mutate(slope = purrr::map_dbl(model, ~round(coefficients(.x)["x"], 2)),
-             intercept = purrr::map_dbl(model, ~round(coefficients(.x)["(Intercept)"]), 2),
-             rsq = purrr::map_dbl(model, ~round(summary(.x)$r.squared, 2)),
+      mutate(slope = purrr::map_dbl(model, ~signif(coefficients(.x)["x"], 3)),
+             intercept = purrr::map_dbl(model, ~signif(coefficients(.x)["(Intercept)"]), 3),
+             rsq = purrr::map_dbl(model, ~signif(summary(.x)$r.squared, 2)),
              form = paste0("y = ", slope, "x ", ifelse(intercept < 0, "", "+"), intercept, ", r2 = ", rsq),
              x = xmax * eq_x,
              y = seq(ymax * eq_y,
