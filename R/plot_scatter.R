@@ -10,13 +10,17 @@
 #' @param linear Whether a linear best fit line is drawn.
 #' @param colors RColorBrewer palette name.
 #' @param one2one_line Should the 1:1 line be drawn.
+#' @param eq_x A number between 0 to 1 to specify the location of equation relative to the x axis.
+#' @param eq_y A number between 0 to 1 to specify the location of equation relative to the y axis.
+#' @param ... Other arguments passed to [plotly::plot_ly()]
 #'
 #' @return A plotly object.
 #' @export
 #'
 
 plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y+text",
-                         linear = TRUE, colors = "Set1", one2one_line = FALSE, ...) {
+                         linear = TRUE, colors = "Set1", one2one_line = FALSE,
+                         eq_x = 0.6, eq_y = 1, ...) {
 
 
   # helper function
@@ -104,9 +108,9 @@ plot_scatter <- function(data, x, y, group = NULL, text = NULL, hoverinfo = "x+y
       mutate(
         rsq = purrr::map_dbl(fit, ~round(summary(.x)$r.squared, 2)),
         form = paste0("y = ", x, "x ", ifelse(intercept < 0, "", "+"), intercept, ", r2 = ", rsq),
-        x = max(data$x, na.rm = TRUE)/2,
-        y = seq(max(data$y),
-                by = sd(data$y) * 0.5,
+        x = max(data$x, na.rm = TRUE) * eq_x,
+        y = seq(max(data$y, na.rm = TRUE) * eq_y,
+                by = sd(data$y, na.rm = TRUE) * 0.5,
                 length.out = n()))
 
 

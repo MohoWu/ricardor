@@ -14,6 +14,8 @@ plot_scatter(
   linear = TRUE,
   colors = "Set1",
   one2one_line = FALSE,
+  eq_x = 0.6,
+  eq_y = 1,
   ...
 )
 }
@@ -36,6 +38,12 @@ For more info, check \code{\link[plotly:schema]{plotly::schema()}}}
 \item{colors}{RColorBrewer palette name.}
 
 \item{one2one_line}{Should the 1:1 line be drawn.}
+
+\item{eq_x}{A number between 0 to 1 to specify the location of equation relative to the x axis.}
+
+\item{eq_y}{A number between 0 to 1 to specify the location of equation relative to the y axis.}
+
+\item{...}{Other arguments passed to \code{\link[plotly:plot_ly]{plotly::plot_ly()}}}
 }
 \value{
 A plotly object.
