@@ -1,5 +1,7 @@
 # ricardor
 
+![R-CMD-check](https://github.com/MohoWu/ricardor/actions/workflows/check-release.yaml/badge.svg)
+
 **ricardor** contains a suite of functions that are useful for various projects 
 at Ricardo. These functions can range from importing data, data wrangling, 
 plotting and modelling.
