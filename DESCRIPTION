@@ -6,11 +6,11 @@ Author: Hao Wu, Stuart Grange
 Maintainer: Hao Wu <hao.wu@ricardo.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: AGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
     dplyr,
     stringr,
@@ -22,4 +22,11 @@ Imports:
     plotly,
     leaflet,
     tidyr,
-    rgdal
+    rgdal,
+    jsonlite,
+    openair,
+    plyr,
+    purrr,
+    raster,
+    xts,
+    zoo

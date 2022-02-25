@@ -50,6 +50,9 @@ of 0.5 is very subtle.}
 \item{connect.points}{Force the line to be drawn between points with gap.
 Default is \code{TRUE}.}
 
+\item{highlight.individual}{Logical. If individual series should be highlighted
+when hovering.}
+
 \item{dy.group}{This specifies the group of the dygraphs.
 If multiple dygraphs are plotted and you want zooming in one of the graphs to be synced with other graphs,
 then set all the dygraphs to the same group.}

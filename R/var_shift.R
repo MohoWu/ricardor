@@ -2,7 +2,7 @@
 #'
 #' Sometimes we want to shift some measurements backward or forward.
 #' [dplyr::lead()] and [dplyr::lag()] do this but will only operate on a single
-#' variable. [shift()] extends this functionality and allows shifting mutiple
+#' variable. [var_shift()] extends this functionality and allows shifting multiple
 #' variables by a range of steps.
 #'
 #' @param df Data frame containing variables to shift.

@@ -6,6 +6,9 @@
 \usage{
 str_trim(x)
 }
+\arguments{
+\item{x}{A character vector.}
+}
 \description{
 Returns string w/o leading or trailing whitespace.
 }

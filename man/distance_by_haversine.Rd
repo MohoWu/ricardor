@@ -43,14 +43,12 @@ distances near the equator. For more information see
 \url{https://en.wikipedia.org/wiki/Haversine_formula}
 
 \code{distance_by_haversine} is not a spatial function and does not have any
-geographic library dependencies. If a spatial funcion is desired or distances
-to/betwwen lines or polygons need to be calculated see
-\code{\link{sp_distance}}.
+geographic library dependencies.
 }
 \examples{
 \dontrun{
-# What is the distance between Oxford's Radcliffe Camera and Cliveden House 
-in Buckinghamshire? 
+# What is the distance between Oxford's Radcliffe Camera and Cliveden House
+in Buckinghamshire?
 # In metres
 distance_by_haversine(51.753447, -1.254024, 51.558170, -0.688250)
 44662.57
@@ -68,15 +66,12 @@ distance_by_haversine(51.753447, -1.254024, 51.558170, -0.688250, "km") * 0.62
 # Distances of many air quality monitoring sites from the City of London
 data_air$distance <- distance_by_haversine(
   data_air$latitude, data_air$longitude, 51.513468, -0.089133, "km")
-  
+
 # Arrange by distance, closest at the top
 data_air <- plyr::arrange(data_air, distance)
 
 }
 
-}
-\seealso{
-See \code{\link{gDistance}}
 }
 \author{
 Stuart K. Grange

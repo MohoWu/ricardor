@@ -6,6 +6,9 @@
 \usage{
 str_underscore(x)
 }
+\arguments{
+\item{x}{A character vector.}
+}
 \description{
 Returns string separated by underscore.
 }

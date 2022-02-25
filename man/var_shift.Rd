@@ -22,7 +22,7 @@ Data frame with append shifted measurements.
 \description{
 Sometimes we want to shift some measurements backward or forward.
 \code{\link[dplyr:lead-lag]{dplyr::lead()}} and \code{\link[dplyr:lead-lag]{dplyr::lag()}} do this but will only operate on a single
-variable. \code{\link[=shift]{shift()}} extends this functionality and allows shifting mutiple
+variable. \code{\link[=var_shift]{var_shift()}} extends this functionality and allows shifting multiple
 variables by a range of steps.
 }
 \examples{

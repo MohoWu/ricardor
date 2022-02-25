@@ -6,6 +6,9 @@
 \usage{
 ggplot2_colours(n = 2)
 }
+\arguments{
+\item{n}{Number of colours}
+}
 \description{
 no export
 }

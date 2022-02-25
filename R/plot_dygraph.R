@@ -25,6 +25,8 @@
 #' @param ylab Name of y axis.
 #' @param ylim Set the vertical range of the graph to c(low, high). See \code{\link[dygraphs]{dyAxis}}.
 #' @param ... other arguements passed to \code{\link[dygraphs]{dygraph}}.
+#' @param highlight.individual Logical. If individual series should be highlighted
+#' when hovering.
 #'
 #' @examples
 #'
@@ -139,6 +141,7 @@ plot_dygraph <- function(df, x = "date", vars, normalise = FALSE, dy.label = NA,
 #'
 #' no export
 #'
+#' @param n Number of colours
 ggplot2_colours <- function (n = 2) {
   hues <- seq(15, 375, length = n + 1)
   hcl(h = hues, l = 65, c = 100)[1:n]
